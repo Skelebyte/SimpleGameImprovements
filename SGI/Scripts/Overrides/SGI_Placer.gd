@@ -11,7 +11,7 @@ func _ready() -> void:
     waitTime = 0.75
     position.z = -0.5
     #sgiMain = get_tree().get_first_node_in_group("SGI_Main")\
-    super()
+
 
 
 func _physics_process(delta):

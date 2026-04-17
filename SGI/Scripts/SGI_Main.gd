@@ -9,7 +9,7 @@ class_name SGI_Main
 #@export var sgiDebugOverlay: PackedScene = preload("res://SGI/Scenes/SGI_DebugOverlay.tscn")
 
 const Map: Resource = preload("res://Scripts/Map.gd")
-const Menu: Resource = preload("res://Scripts/Menu.gd")
+@onready var Menu: Resource = load("res://Scripts/Menu.gd")
 const SGI_Character_Src: Resource = preload("res://SGI/Scripts/Overrides/SGI_Character.gd")
 
 var lastScene: String = ""
@@ -17,6 +17,10 @@ var lastScene: String = ""
 
 func _ready():
     name = "SGI_Main"
+    call_deferred("Setup")
+
+func Setup():
+    
     OverrideScript("res://SGI/Scripts/Overrides/SGI_Character.gd")
     OverrideScript("res://SGI/Scripts/Overrides/SGI_Placer.gd")
     get_tree().scene_changed.connect(OnNewSceneLoad)
@@ -26,9 +30,9 @@ func OnNewSceneLoad():
     call_deferred("OnSceneReady")
 
 func OnSceneReady():
-    if get_tree().current_scene is Menu:
+    if get_tree().current_scene.get_script().resource_path == "res://Scripts/Menu.gd":
         CreateMenuOverlay("SGI Version: " + str(versionMajor) + "." + str(versionMinor) + "." + str(versionPatch))
-        return
+    
     if get_tree().current_scene is Map:
         var map = get_tree().current_scene as Map
         if map.mapType == "Shelter":
