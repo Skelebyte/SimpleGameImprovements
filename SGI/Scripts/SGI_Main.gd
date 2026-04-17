@@ -3,7 +3,7 @@ class_name SGI_Main
 
 @export var versionMajor: int = 0
 @export var versionMinor: int = 1
-@export var versionPatch: int = 0
+@export var versionPatch: int = 1
 
 @export var sgiMenuOverlay: PackedScene = preload("res://SGI/Scenes/SGI_MenuOverlay.tscn")
 #@export var sgiDebugOverlay: PackedScene = preload("res://SGI/Scenes/SGI_DebugOverlay.tscn")

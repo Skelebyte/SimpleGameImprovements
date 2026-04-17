@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boggvphua01ty"
-path.s3tc="res://.godot/imported/SGI_1000x563.png-80bf4df6b09172e50339122fe5a263c1.s3tc.ctex"
+path.s3tc="res://.godot/imported/SGI_1000x563.png-21c570e3389d6bd37f355a002476db0f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://SGI/SGI_1000x563.png"
-dest_files=["res://.godot/imported/SGI_1000x563.png-80bf4df6b09172e50339122fe5a263c1.s3tc.ctex"]
+source_file="res://SimpleGameImprovements/SGI/SGI_1000x563.png"
+dest_files=["res://.godot/imported/SGI_1000x563.png-21c570e3389d6bd37f355a002476db0f.s3tc.ctex"]
 
 [params]
 

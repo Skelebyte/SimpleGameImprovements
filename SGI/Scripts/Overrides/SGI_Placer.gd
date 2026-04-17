@@ -1,8 +1,6 @@
 extends "res://Scripts/Placer.gd"
 class_name SGI_Placer
 
-#const SGI_Main = preload("res://SGI/Scripts/SGI_Main.gd")
-
 var overrideDefaultPlacing = true
 #var sgiMain: SGI_Main
 var moveSpeed: float = 12.5
@@ -12,7 +10,9 @@ var orientSpeed: float = 10.0
 func _ready() -> void:
     waitTime = 0.75
     position.z = -0.5
-    #sgiMain = get_tree().get_first_node_in_group("SGI_Main")
+    #sgiMain = get_tree().get_first_node_in_group("SGI_Main")\
+    super()
+
 
 func _physics_process(delta):
     if overrideDefaultPlacing:
