@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://db33gevrumwub"]
+
+[ext_resource type="Script" uid="uid://dyi3chotrtirn" path="res://SGI/Scripts/SGI_Main.gd" id="1_7yo7e"]
+
+[node name="SGI_Main" type="Node" unique_id=1805042009 groups=["SGI_Main"]]
+script = ExtResource("1_7yo7e")

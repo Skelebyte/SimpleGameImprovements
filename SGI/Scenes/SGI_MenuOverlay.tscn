@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dnuweal11qrs5"]
+
+[node name="SGI_MenuOverlay" type="Control" unique_id=2138237054]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SGI_Version" type="Label" parent="." unique_id=1137916155]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -34.0
+offset_right = -32.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "SGI Version: 0.1.0"
+horizontal_alignment = 2
+vertical_alignment = 1
