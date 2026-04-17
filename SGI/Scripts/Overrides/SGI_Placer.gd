@@ -1,21 +1,18 @@
 extends "res://Scripts/Placer.gd"
 class_name SGI_Placer
 
-var overrideDefaultPlacing = true
+var sgiConfig = preload("res://SGI/Config/SGI_ConfigSettings.tres")
+
 #var sgiMain: SGI_Main
-var moveSpeed: float = 12.5
-var rotateSpeed: float = 12.5
-var orientSpeed: float = 10.0
 
 func _ready() -> void:
-    waitTime = 0.75
-    position.z = -0.5
+    if sgiConfig.allowPlaceMod:
+        waitTime = 0.75
+        position.z = -0.5
     #sgiMain = get_tree().get_first_node_in_group("SGI_Main")\
 
-
-
 func _physics_process(delta):
-    if overrideDefaultPlacing:
+    if sgiConfig.allowPlaceMod:
         OverriddenPlacing(delta)
     else:
         super(delta)
@@ -56,7 +53,7 @@ func OverriddenPlacing(delta: float):
     if Input.is_action_just_pressed(("place")) && !gameData.decor:
 
         if gameData.interaction && interactor.target && interactor.target.is_in_group("Item") && !gameData.isPlacing && !initialWait:
-            distance = 0.5 #position.distance_to(interactor.target) # NOT ACTUALLY SURE WHAT THIS DOES
+            distance = sgiConfig.placeDistance #position.distance_to(interactor.target) # NOT ACTUALLY SURE WHAT THIS DOES
             angle = 0.0
             orientationMode = 1
 
@@ -92,19 +89,19 @@ func OverriddenPlacing(delta: float):
         position = ( - transform.basis.z * distance) + ( - transform.basis.y * placable.mesh.get_aabb().get_center().y) 
 
 
-        placable.global_position = lerp(placable.global_position, global_position, delta * moveSpeed) # SGI
-        placable.global_rotation.y = lerp_angle(placable.global_rotation.y, global_rotation.y + deg_to_rad(placable.slotData.itemData.orientation) + angle, delta * rotateSpeed)
+        placable.global_position = lerp(placable.global_position, global_position, delta * sgiConfig.placeMoveSpeed)
+        placable.global_rotation.y = lerp_angle(placable.global_rotation.y, global_rotation.y + deg_to_rad(placable.slotData.itemData.orientation) + angle, delta * sgiConfig.placeRotateSpeed)
 
 
         if orientationMode == 1:
-            placable.global_rotation.x = lerp_angle(placable.global_rotation.x, 0.0, delta * orientSpeed)
-            placable.global_rotation.z = lerp_angle(placable.global_rotation.z, 0.0, delta * orientSpeed)
+            placable.global_rotation.x = lerp_angle(placable.global_rotation.x, 0.0, delta * sgiConfig.placeOrientSpeed)
+            placable.global_rotation.z = lerp_angle(placable.global_rotation.z, 0.0, delta * sgiConfig.placeOrientSpeed)
         elif orientationMode == 2:
-            placable.global_rotation.x = lerp_angle(placable.global_rotation.x, deg_to_rad(-90), delta * orientSpeed)
-            placable.global_rotation.z = lerp_angle(placable.global_rotation.z, 0.0, delta * orientSpeed)
+            placable.global_rotation.x = lerp_angle(placable.global_rotation.x, deg_to_rad(-90), delta * sgiConfig.placeOrientSpeed)
+            placable.global_rotation.z = lerp_angle(placable.global_rotation.z, 0.0, delta * sgiConfig.placeOrientSpeed)
         elif orientationMode == 3:
-            placable.global_rotation.x = lerp_angle(placable.global_rotation.x, 0.0, delta * orientSpeed)
-            placable.global_rotation.z = lerp_angle(placable.global_rotation.z, deg_to_rad(-90), delta * orientSpeed)
+            placable.global_rotation.x = lerp_angle(placable.global_rotation.x, 0.0, delta * sgiConfig.placeOrientSpeed)
+            placable.global_rotation.z = lerp_angle(placable.global_rotation.z, deg_to_rad(-90), delta * sgiConfig.placeOrientSpeed)
 
 
     if gameData.isPlacing && placable && gameData.decor:
@@ -142,5 +139,5 @@ func OverriddenPlacing(delta: float):
 
 
         else:
-            placable.global_rotation.y = lerp_angle(placable.global_rotation.y, global_rotation.y + angle, delta * rotateSpeed)
-            placable.global_position = lerp(placable.global_position, floatingTarget, delta * moveSpeed)
+            placable.global_rotation.y = lerp_angle(placable.global_rotation.y, global_rotation.y + angle, delta * sgiConfig.placeRotateSpeed)
+            placable.global_position = lerp(placable.global_position, floatingTarget, delta * sgiConfig.placeMoveSpeed)

@@ -2,8 +2,10 @@
 extends "res://Scripts/Character.gd"
 class_name SGI_Character
 
+var sgiConfig = preload("res://SGI/Config/SGI_ConfigSettings.tres")
+
 func _physics_process(delta):
-    if gameData.shelter: # overrides default decay.
+    if gameData.shelter and sgiConfig.allowStatMod: # overrides default decay.
         Health(delta)
         Stamina(delta)
         Energy(0)

@@ -1,10 +1,11 @@
 [mod]
 name="Simple Game Impovements"
 id="SimpleGameImprovements"
-version="0.1.1"
+version="0.2.0"
 
 [autoload]
 SGI="res://SGI/Scenes/SGI_Main.tscn"
+SGI_Config="res://SGI/Config/SGI_Config.gd"
 
 [updates]
 modworkshop=56189

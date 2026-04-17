@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="SGI_ConfigSettings" format=3 uid="uid://ceq13fx25lfhq"]
+
+[ext_resource type="Script" uid="uid://d4dmxg5px8wtv" path="res://SGI/Config/SGI_ConfigSettings.gd" id="1_fp0tc"]
+
+[resource]
+script = ExtResource("1_fp0tc")
