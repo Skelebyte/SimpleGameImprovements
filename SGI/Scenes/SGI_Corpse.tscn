@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://6h1hife4ib05"]
+
+[ext_resource type="Script" uid="uid://bayspollu1snj" path="res://Scripts/LootContainer.gd" id="1_3cpfv"]
+[ext_resource type="Resource" uid="uid://32l5eq5slgj6" path="res://Audio/Containers/Container_Corpse.tres" id="2_bn1r6"]
+
+[node name="SGI_Corpse" type="RigidBody3D" unique_id=1880587681]
+script = ExtResource("1_3cpfv")
+containerName = "Player Corpse"
+audioEvent = ExtResource("2_bn1r6")
