@@ -2,10 +2,11 @@ extends Node
 class_name SGI_Main
 
 @export var versionMajor: int = 0
-@export var versionMinor: int = 2
-@export var versionPatch: int = 0
+@export var versionMinor: int = 4
+@export var versionPatch: int = 1
 
 @export var sgiMenuOverlay: PackedScene = preload("res://SGI/Scenes/SGI_MenuOverlay.tscn")
+#@export var sgiCrosshair: PackedScene = preload("res://SGI/Scenes/SGI_Crosshair.tscn")
 #@export var sgiDebugOverlay: PackedScene = preload("res://SGI/Scenes/SGI_DebugOverlay.tscn")
 
 const Map: Resource = preload("res://Scripts/Map.gd")
@@ -20,11 +21,12 @@ func _ready():
     call_deferred("Setup")
 
 func Setup():
-    
     OverrideScript("res://SGI/Scripts/Overrides/SGI_Character.gd")
     OverrideScript("res://SGI/Scripts/Overrides/SGI_Placer.gd")
+    OverrideScript("res://SGI/Scripts/Overrides/SGI_HUD.gd")
+    OverrideScript("res://SGI/Scripts/Overrides/SGI_Controller.gd")
     get_tree().scene_changed.connect(OnNewSceneLoad)
-    get_tree().reload_current_scene()
+    get_tree().reload_current_scene() # required for version number to appear when first loading menu
 
 func OnNewSceneLoad():
     call_deferred("OnSceneReady")
@@ -41,7 +43,7 @@ func OnSceneReady():
                 return
             var controller: CharacterBody3D
             for node in playerGroup:
-                if node is CharacterBody3D and node.name == "Controller":
+                if node is CharacterBody3D && node.name == "Controller":
                     controller = node
                     break
                     
@@ -62,3 +64,9 @@ func OverrideScript(path: String):
     script.reload()
     var base = script.get_base_script()
     script.take_over_path(base.resource_path)
+
+func GetCurrentMapName() -> String:
+    if get_tree().current_scene is Map:
+        var map = get_tree().current_scene as Map
+        return map.mapName
+    return "SGI_NOT_A_MAP"

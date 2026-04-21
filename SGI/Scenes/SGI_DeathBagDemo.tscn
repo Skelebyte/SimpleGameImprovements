@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dtarkyc0c6la5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bbak2"]
+shading_mode = 0
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1yhgj"]
+material = SubResource("StandardMaterial3D_bbak2")
+size = Vector3(1, 100, 1)
+
+[node name="SGI_DeathBagDemo" type="Node3D" unique_id=2123784032]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=463044394]
+mesh = SubResource("BoxMesh_1yhgj")

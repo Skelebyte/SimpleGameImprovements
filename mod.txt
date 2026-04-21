@@ -1,7 +1,7 @@
 [mod]
 name="Simple Game Impovements"
 id="SimpleGameImprovements"
-version="0.2.0"
+version="0.4.1"
 
 [autoload]
 SGI="res://SGI/Scenes/SGI_Main.tscn"

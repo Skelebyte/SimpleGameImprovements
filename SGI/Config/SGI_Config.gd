@@ -10,6 +10,27 @@ const FILE_PATH = "user://MCM/SGI"
 func _ready():
     var config = ConfigFile.new()
     config.set_value(
+        "Bool", "allowDeathBagMod", {
+        "name" = "Allow Death Bag Mod",
+        "tooltip" = "When enabled, a bag with the loot you were carrying will spawn at the location of death.\nThe bag will only spawn once per level load.\nThis feature must be enabled at the time of death in order to function",
+        "default" = false,
+        "value" = false
+    })
+    config.set_value(
+        "Bool", "allowMovementMod", {
+        "name" = "Allow Movement Mod",
+        "tooltip" = "When enabled, changes to movement such as being able to transition to a sprint from couch will be enabled.",
+        "default" = true,
+        "value" = true
+    })
+    config.set_value(
+        "Bool", "allowCrosshairMod", {
+        "name" = "Allow Crosshair Mod",
+        "tooltip" = "When enabled, a small crosshair will be visible in the center of the screen.",
+        "default" = false,
+        "value" = false
+    })
+    config.set_value(
         "Bool", "allowStatMod", {
         "name" = "Allow Stat Mod",
         "tooltip" = "When enabled, Energy, Hydration, Mental, and Cat stats will not decrease while in shelter.",
@@ -68,6 +89,7 @@ func _ready():
         DirAccess.open("user://").make_dir(FILE_PATH)
         config.save(FILE_PATH + "/config.ini")
     else:
+        MCM_Helpers.CheckConfigurationHasUpdated(MOD_ID, config, FILE_PATH + "/config.ini")
         config.load(FILE_PATH + "/config.ini") 
         
     MCM_Helpers.RegisterConfiguration(
@@ -79,7 +101,12 @@ func _ready():
         }
     )
     
+    UpdateConfigProperties(config)
+    
 func UpdateConfigProperties(config: ConfigFile):
+    sgiConfigSettings.allowDeathBagMod = config.get_value("Bool", "allowDeathBagMod")["value"]
+    sgiConfigSettings.allowMovementMod = config.get_value("Bool", "allowMovementMod")["value"]
+    sgiConfigSettings.allowCrosshairMod = config.get_value("Bool", "allowCrosshairMod")["value"]
     sgiConfigSettings.allowStatMod = config.get_value("Bool", "allowStatMod")["value"]
     sgiConfigSettings.allowPlaceMod = config.get_value("Bool", "allowPlaceMod")["value"]
     sgiConfigSettings.placeCollisionEnableWaitTime = config.get_value("Float", "placeCollisionEnableWaitTime")["value"]

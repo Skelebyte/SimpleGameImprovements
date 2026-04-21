@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c2tqul6ih48dc"]
+
+[ext_resource type="Script" uid="uid://cnk3f7j2j2k1k" path="res://SGI/Scripts/SGI_Crosshair.gd" id="1_vj28v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ria4j"]
+bg_color = Color(0.14509805, 0.14509805, 0.14509805, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+
+[node name="SGI_Crosshair" type="Control" unique_id=923026579]
+z_index = -10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_vj28v")
+
+[node name="Panel" type="Panel" parent="." unique_id=1988801989]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ria4j")

@@ -1,6 +1,9 @@
 extends Resource
 class_name SGI_ConfigSettings
 
+var allowDeathBagMod: bool = false
+var allowMovementMod: bool = true
+var allowCrosshairMod: bool = false
 var allowStatMod: bool = true
 var allowPlaceMod: bool = true
 var placeCollisionEnableWaitTime: float = 0.75 # default: 0.1

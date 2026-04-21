@@ -16,7 +16,59 @@ func _physics_process(delta):
         OverriddenPlacing(delta)
     else:
         super(delta)
-        
+       
+func ContextPlace(target: Node3D):
+    if sgiConfig.allowPlaceMod:
+        OverriddenContextPlace(target)
+    else:
+        super(target)
+
+func OverriddenContextPlace(target: Node3D):
+    if gameData.decor:
+
+            distance = 2.0
+            angle = 0.0
+
+
+            position = - transform.basis.z * distance
+            target.global_position = global_position
+
+
+            for child in target.get_children():
+                if child is Furniture:
+                    furniture = child
+
+
+            placable = target
+            gameData.isPlacing = true
+            furniture.StartMove()
+
+
+    else:
+        placable = target
+        placable.body_entered.connect(self.Collided)
+        gameData.isPlacing = true
+
+        placable.rotation.x = deg_to_rad(0)
+        placable.rotation.z = deg_to_rad(0)
+        placable.linear_velocity = Vector3.ZERO
+        placable.angular_velocity = Vector3.ZERO
+
+        distance = 0.5
+        angle = 0.0
+        orientationMode = 1
+
+        position = ( - transform.basis.z * distance) + ( - transform.basis.y * placable.mesh.get_aabb().get_center().y)
+        placable.global_position = global_position
+        placable.global_rotation.y = global_rotation.y + deg_to_rad(placable.slotData.itemData.orientation) + angle
+
+
+        placable.Freeze()
+        initialWait = true
+        await get_tree().create_timer(waitTime, false).timeout;
+        initialWait = false
+        placable.Kinematic()
+  
 func OverriddenPlacing(delta: float):
     if gameData.freeze || gameData.isReloading || gameData.isInspecting:
         return
