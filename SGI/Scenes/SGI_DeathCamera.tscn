@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bm03nqquxgi80"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jv437"]
+radius = 0.3
+height = 1.85
+
+[node name="SGI_DeathCamera" type="Node3D" unique_id=876234604]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1365773770]
+
+[node name="Camera3D" type="Camera3D" parent="RigidBody3D" unique_id=175934022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1914607642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925, 0)
+shape = SubResource("CapsuleShape3D_jv437")

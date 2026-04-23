@@ -1,9 +1,46 @@
 [gd_scene format=3 uid="uid://6h1hife4ib05"]
 
-[ext_resource type="Script" uid="uid://bayspollu1snj" path="res://Scripts/LootContainer.gd" id="1_3cpfv"]
+[ext_resource type="Script" uid="uid://ds50qghrsg67s" path="res://SGI/Scripts/Overrides/SGI_LootContainer.gd" id="1_uo0cp"]
 [ext_resource type="Resource" uid="uid://32l5eq5slgj6" path="res://Audio/Containers/Container_Corpse.tres" id="2_bn1r6"]
+[ext_resource type="ArrayMesh" uid="uid://dcvan0x0hb0hj" path="res://Items/Backpacks/Backpack_Nomad/Files/MS_Backpack_Nomad.obj" id="3_4ttb6"]
+[ext_resource type="PhysicsMaterial" uid="uid://symcw0jv0fgr" path="res://Items/Physics/Item_Physics.tres" id="3_oia5u"]
+[ext_resource type="Script" uid="uid://dn8h8ut7uigli" path="res://Scripts/Surface.gd" id="3_uo0cp"]
+[ext_resource type="Material" uid="uid://jlyld31g8wve" path="res://Items/Backpacks/Backpack_Nomad/Files/MT_Backpack_Nomad.tres" id="4_uo0cp"]
 
-[node name="SGI_Corpse" type="RigidBody3D" unique_id=1880587681]
-script = ExtResource("1_3cpfv")
+[sub_resource type="BoxShape3D" id="BoxShape3D_oia5u"]
+size = Vector3(0.3, 0.44, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4ttb6"]
+size = Vector3(0.1, 100, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo0cp"]
+shading_mode = 0
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="SGI_Corpse" type="Node3D" unique_id=1476357840]
+script = ExtResource("1_uo0cp")
+preventDefaultReadyBehaviour = true
 containerName = "Player Corpse"
 audioEvent = ExtResource("2_bn1r6")
+
+[node name="Container" type="RigidBody3D" parent="." unique_id=1880587681 groups=["Interactable"]]
+collision_layer = 17
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+physics_material_override = ExtResource("3_oia5u")
+script = ExtResource("3_uo0cp")
+
+[node name="Mesh" type="MeshInstance3D" parent="Container" unique_id=1543687933]
+layers = 4
+visibility_range_end = 50.0
+mesh = ExtResource("3_4ttb6")
+surface_material_override/0 = ExtResource("4_uo0cp")
+
+[node name="Collision" type="CollisionShape3D" parent="Container" unique_id=1981468391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0.025)
+shape = SubResource("BoxShape3D_oia5u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Container" unique_id=1058711729]
+visible = false
+mesh = SubResource("BoxMesh_4ttb6")
+surface_material_override/0 = SubResource("StandardMaterial3D_uo0cp")

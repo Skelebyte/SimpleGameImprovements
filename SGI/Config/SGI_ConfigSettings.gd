@@ -1,6 +1,7 @@
 extends Resource
 class_name SGI_ConfigSettings
 
+var allowCatRespawnMod: bool = false
 var allowDeathBagMod: bool = false
 var allowMovementMod: bool = true
 var allowCrosshairMod: bool = false

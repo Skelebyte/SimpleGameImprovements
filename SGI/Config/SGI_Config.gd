@@ -10,6 +10,13 @@ const FILE_PATH = "user://MCM/SGI"
 func _ready():
     var config = ConfigFile.new()
     config.set_value(
+        "Bool", "allowCatRespawnMod", {
+        "name" = "Allow Cat Respawn Mod",
+        "tooltip" = "When enabled, the cat will respawn after death. This won't spawn the cat back at a shelter, but back in Outpost as if it wasn't found.",
+        "default" = false,
+        "value" = false
+    })
+    config.set_value(
         "Bool", "allowDeathBagMod", {
         "name" = "Allow Death Bag Mod",
         "tooltip" = "When enabled, a bag with the loot you were carrying will spawn at the location of death.\nThe bag will only spawn once per level load.\nThis feature must be enabled at the time of death in order to function",
@@ -104,6 +111,7 @@ func _ready():
     UpdateConfigProperties(config)
     
 func UpdateConfigProperties(config: ConfigFile):
+    sgiConfigSettings.allowCatRespawnMod = config.get_value("Bool", "allowCatRespawnMod")["value"]
     sgiConfigSettings.allowDeathBagMod = config.get_value("Bool", "allowDeathBagMod")["value"]
     sgiConfigSettings.allowMovementMod = config.get_value("Bool", "allowMovementMod")["value"]
     sgiConfigSettings.allowCrosshairMod = config.get_value("Bool", "allowCrosshairMod")["value"]
